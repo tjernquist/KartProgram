@@ -40,7 +40,6 @@ public class Karta extends JFrame {
         nyFörbindelseKnapp.addActionListener(new NyFörbindelse());
         JButton ändraFörbindelseKnapp = new JButton("Ändra förbindelse");
         ändraFörbindelseKnapp.addActionListener(new ÄndraFörbindelse());
-        
 
         JPanel knappPanel = new JPanel(new GridLayout());
         knappPanel.add(hittaVägKnapp);
@@ -142,7 +141,6 @@ public class Karta extends JFrame {
         }
     }
 
-
     private class HittaVäg implements ActionListener {
 
         public void actionPerformed(ActionEvent eva) {
@@ -165,7 +163,7 @@ public class Karta extends JFrame {
         public void actionPerformed(ActionEvent ave) {
 
             if (kartaLaddad) {
-                
+
                 bild.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
                 bild.addMouseListener(new MusNyPlats());
 
@@ -224,13 +222,13 @@ public class Karta extends JFrame {
             }
         }
     }
-    
-        public class StängFönster implements ActionListener {
-            public void actionPerformed (ActionEvent eva) {
-                System.exit(0);
-            }
-        }
 
+    public class StängFönster implements ActionListener {
+
+        public void actionPerformed(ActionEvent eva) {
+            System.exit(0);
+        }
+    }
 
     private class NyFörbindelse implements ActionListener {
 
@@ -271,7 +269,7 @@ public class Karta extends JFrame {
                 JOptionPane.showMessageDialog(null, "En eller båda noder fattas i grafen");
             }
         }
-    } 
+    }
 
     private class FörbindelseFönster extends JPanel {
 
@@ -305,11 +303,11 @@ public class Karta extends JFrame {
     }
 
     private class VägFönster extends JPanel {
-        
+
         int totalTid;
 
         VägFönster() {
-            
+
             String vägInfo = "Från " + d1.getNamn() + " till " + d2.getNamn() + "\n";
 
             JTextArea display = new JTextArea();
@@ -317,18 +315,17 @@ public class Karta extends JFrame {
             add(display);
             JScrollPane scroll = new JScrollPane();
             display.add(scroll);
-            
+
             display.append(vägInfo + "\n");
 
-            
             ArrayList<Edge<String>> väg = GraphMethods.snabbasteVäg(d1.getNamn(), d2.getNamn(), g);
 
-                for (Edge e : väg) {
-                   display.append(e.toString() + "\n");
-                   totalTid += e.getVikt();
-                }
-                
-                display.append("\n Total tid: " + totalTid);
+            for (Edge e : väg) {
+                display.append(e.toString() + "\n");
+                totalTid += e.getVikt();
+            }
+
+            display.append("\n Total tid: " + totalTid);
 
         }
     }
